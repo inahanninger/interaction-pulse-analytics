@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Tooltip, Legend } from "recharts";
@@ -114,7 +113,7 @@ const SessionDistribution: React.FC<SessionDistributionProps> = ({
             <TabsTrigger value="interactionType">Interaction Type</TabsTrigger>
             <TabsTrigger value="offenseType">Offense Type</TabsTrigger>
           </TabsList>
-        
+          
           <TabsContent value="interactionType" className="mt-2">
             <div className="text-sm text-gray-500 mb-2">Click segments to filter by interaction type</div>
             {renderInteractionTypeBadges()}
@@ -181,6 +180,9 @@ const SessionDistribution: React.FC<SessionDistributionProps> = ({
             </div>
           </TabsContent>
         </Tabs>
+      </CardHeader>
+      <CardContent>
+        {/* Empty CardContent to maintain structure */}
       </CardContent>
     </Card>
   );
