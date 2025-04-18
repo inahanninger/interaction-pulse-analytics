@@ -114,74 +114,73 @@ const SessionDistribution: React.FC<SessionDistributionProps> = ({
             <TabsTrigger value="interactionType">Interaction Type</TabsTrigger>
             <TabsTrigger value="offenseType">Offense Type</TabsTrigger>
           </TabsList>
-        </Tabs>
-      </CardHeader>
-      <CardContent>
-        <TabsContent value="interactionType" className="mt-0">
-          <div className="text-sm text-gray-500 mb-2">Click segments to filter by interaction type</div>
-          {renderInteractionTypeBadges()}
-          <div className="h-[300px] mt-2">
-            <ResponsiveContainer width="100%" height="100%">
-              <PieChart>
-                <Pie
-                  data={interactionTypeData}
-                  cx="50%"
-                  cy="50%"
-                  labelLine={true}
-                  outerRadius={80}
-                  fill="#8884d8"
-                  dataKey="value"
-                  nameKey="name"
-                  label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
-                  onClick={handleInteractionTypeClick}
-                  cursor="pointer"
-                >
-                  {interactionTypeData.map((entry, index) => (
-                    <Cell 
-                      key={`cell-${index}`} 
-                      fill={selectedInteractionTypes.includes(entry.id) ? COLORS[index % COLORS.length] : `${COLORS[index % COLORS.length]}88`}
-                      stroke={selectedInteractionTypes.includes(entry.id) ? '#fff' : 'none'}
-                      strokeWidth={selectedInteractionTypes.includes(entry.id) ? 2 : 0}
-                    />
-                  ))}
-                </Pie>
-                <Tooltip formatter={(value, name) => [`${value}%`, name]} />
-                <Legend />
-              </PieChart>
-            </ResponsiveContainer>
-          </div>
-        </TabsContent>
         
-        <TabsContent value="offenseType" className="mt-0">
-          <div className="text-sm text-gray-500 mb-2">Click bars to filter by offense type</div>
-          {renderOffenseTypeBadges()}
-          <div className="h-[300px] mt-2">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart
-                layout="vertical"
-                data={offenseTypeData}
-                margin={{ top: 20, right: 30, left: 80, bottom: 5 }}
-              >
-                <XAxis type="number" tickFormatter={(value) => `${value}%`} />
-                <YAxis dataKey="name" type="category" tick={{ fontSize: 12 }} width={80} />
-                <Tooltip formatter={(value) => [`${value}%`, 'Percentage']} />
-                <Bar 
-                  dataKey="value" 
-                  fill="#8884d8" 
-                  onClick={handleOffenseTypeClick}
-                  cursor="pointer"
+          <TabsContent value="interactionType" className="mt-2">
+            <div className="text-sm text-gray-500 mb-2">Click segments to filter by interaction type</div>
+            {renderInteractionTypeBadges()}
+            <div className="h-[300px] mt-2">
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={interactionTypeData}
+                    cx="50%"
+                    cy="50%"
+                    labelLine={true}
+                    outerRadius={80}
+                    fill="#8884d8"
+                    dataKey="value"
+                    nameKey="name"
+                    label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                    onClick={handleInteractionTypeClick}
+                    cursor="pointer"
+                  >
+                    {interactionTypeData.map((entry, index) => (
+                      <Cell 
+                        key={`cell-${index}`} 
+                        fill={selectedInteractionTypes.includes(entry.id) ? COLORS[index % COLORS.length] : `${COLORS[index % COLORS.length]}88`}
+                        stroke={selectedInteractionTypes.includes(entry.id) ? '#fff' : 'none'}
+                        strokeWidth={selectedInteractionTypes.includes(entry.id) ? 2 : 0}
+                      />
+                    ))}
+                  </Pie>
+                  <Tooltip formatter={(value, name) => [`${value}%`, name]} />
+                  <Legend />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+          </TabsContent>
+          
+          <TabsContent value="offenseType" className="mt-2">
+            <div className="text-sm text-gray-500 mb-2">Click bars to filter by offense type</div>
+            {renderOffenseTypeBadges()}
+            <div className="h-[300px] mt-2">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart
+                  layout="vertical"
+                  data={offenseTypeData}
+                  margin={{ top: 20, right: 30, left: 80, bottom: 5 }}
                 >
-                  {offenseTypeData.map((entry, index) => (
-                    <Cell 
-                      key={`cell-${index}`} 
-                      fill={selectedOffenseTypes.includes(entry.id) ? COLORS[index % COLORS.length] : `${COLORS[index % COLORS.length]}88`}
-                    />
-                  ))}
-                </Bar>
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
-        </TabsContent>
+                  <XAxis type="number" tickFormatter={(value) => `${value}%`} />
+                  <YAxis dataKey="name" type="category" tick={{ fontSize: 12 }} width={80} />
+                  <Tooltip formatter={(value) => [`${value}%`, 'Percentage']} />
+                  <Bar 
+                    dataKey="value" 
+                    fill="#8884d8" 
+                    onClick={handleOffenseTypeClick}
+                    cursor="pointer"
+                  >
+                    {offenseTypeData.map((entry, index) => (
+                      <Cell 
+                        key={`cell-${index}`} 
+                        fill={selectedOffenseTypes.includes(entry.id) ? COLORS[index % COLORS.length] : `${COLORS[index % COLORS.length]}88`}
+                      />
+                    ))}
+                  </Bar>
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          </TabsContent>
+        </Tabs>
       </CardContent>
     </Card>
   );
