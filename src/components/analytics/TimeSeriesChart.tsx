@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface TimeSeriesChartProps {
@@ -19,20 +19,20 @@ const TimeSeriesChart: React.FC<TimeSeriesChartProps> = ({
 }) => {
   const [timeRange, setTimeRange] = useState("30days");
   
-  // Sample data - in a real app, this would be filtered based on props
+  // Sample data for sessions
   const data = [
-    { date: '2024-01-01', sessions: 12, trend: 15 },
-    { date: '2024-01-02', sessions: 19, trend: 17 },
-    { date: '2024-01-03', sessions: 15, trend: 18 },
-    { date: '2024-01-04', sessions: 25, trend: 20 },
-    { date: '2024-01-05', sessions: 32, trend: 22 },
-    { date: '2024-01-06', sessions: 18, trend: 19 },
-    { date: '2024-01-07', sessions: 29, trend: 21 },
-    { date: '2024-01-08', sessions: 41, trend: 24 },
-    { date: '2024-01-09', sessions: 38, trend: 26 },
-    { date: '2024-01-10', sessions: 25, trend: 25 },
-    { date: '2024-01-11', sessions: 22, trend: 24 },
-    { date: '2024-01-12', sessions: 28, trend: 25 },
+    { date: '2024-01-01', sessions: 12 },
+    { date: '2024-01-02', sessions: 19 },
+    { date: '2024-01-03', sessions: 15 },
+    { date: '2024-01-04', sessions: 25 },
+    { date: '2024-01-05', sessions: 32 },
+    { date: '2024-01-06', sessions: 18 },
+    { date: '2024-01-07', sessions: 29 },
+    { date: '2024-01-08', sessions: 41 },
+    { date: '2024-01-09', sessions: 38 },
+    { date: '2024-01-10', sessions: 25 },
+    { date: '2024-01-11', sessions: 22 },
+    { date: '2024-01-12', sessions: 28 },
   ];
   
   return (
@@ -81,20 +81,12 @@ const TimeSeriesChart: React.FC<TimeSeriesChartProps> = ({
                     borderRadius: '6px'
                   }}
                 />
-                <Legend />
                 <Line 
                   type="monotone" 
                   dataKey="sessions" 
                   stroke="#8884d8" 
                   activeDot={{ r: 8 }} 
                   name="Daily Sessions"
-                />
-                <Line 
-                  type="monotone" 
-                  dataKey="trend" 
-                  stroke="#82ca9d" 
-                  strokeDasharray="5 5" 
-                  name="Trend Line" 
                 />
               </LineChart>
             </ResponsiveContainer>
