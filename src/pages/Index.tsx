@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
@@ -11,7 +10,7 @@ import {
   Info, 
   Pencil, 
   Search, 
-  SortIcon, 
+  ArrowUpDownIcon,  // Replace SortIcon with ArrowUpDownIcon 
   Zap
 } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -110,7 +109,7 @@ const Index = () => {
                     <p className="text-sm text-gray-500">There have been 1,001 sessions this month.</p>
                   </div>
                   <button className="flex items-center text-sm text-gray-500">
-                    <SortIcon className="h-4 w-4 mr-1" />
+                    <ArrowUpDownIcon className="h-4 w-4 mr-1" />
                     Sort
                   </button>
                 </div>
