@@ -1,7 +1,6 @@
 
 import React, { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import { Calendar as CalendarIcon } from "lucide-react";
@@ -9,6 +8,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
+import { DateRange } from "react-day-picker";
 
 interface TimeSeriesChartProps {
   selectedUser: string | null;
@@ -22,10 +22,8 @@ const TimeSeriesChart: React.FC<TimeSeriesChartProps> = ({
   selectedOffenseTypes
 }) => {
   const [timeRange, setTimeRange] = useState("all-time");
-  const [dateRange, setDateRange] = useState<{
-    from: Date | undefined;
-    to: Date | undefined;
-  }>({
+  // Fix: Update the dateRange type to match DateRange from react-day-picker
+  const [dateRange, setDateRange] = useState<DateRange | undefined>({
     from: undefined,
     to: undefined
   });
@@ -56,7 +54,7 @@ const TimeSeriesChart: React.FC<TimeSeriesChartProps> = ({
       case '30days':
         return 'Last 30 Days';
       case 'custom':
-        return dateRange.from && dateRange.to 
+        return dateRange?.from && dateRange?.to 
           ? `${format(dateRange.from, "MMM dd, yyyy")} - ${format(dateRange.to, "MMM dd, yyyy")}`
           : "Custom Range";
       case 'all-time':
@@ -117,7 +115,7 @@ const TimeSeriesChart: React.FC<TimeSeriesChartProps> = ({
                   mode="range"
                   selected={dateRange}
                   onSelect={(range) => {
-                    setDateRange(range || { from: undefined, to: undefined });
+                    setDateRange(range);
                     if (range?.from && range?.to) {
                       setTimeRange("custom");
                     }
