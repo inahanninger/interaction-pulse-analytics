@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { DateRangePicker } from "@/components/DateRangePicker";
 import TopMetrics from "@/components/analytics/TopMetrics";
 import TimeSeriesChart from "@/components/analytics/TimeSeriesChart";
@@ -54,26 +53,14 @@ const Index = () => {
 
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
           <div>
-            <p className="text-sm font-medium text-gray-500 mb-2">View</p>
-            <Select defaultValue="allUsers">
-              <SelectTrigger className="w-full md:w-[180px] bg-white">
-                <SelectValue placeholder="All users" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="allUsers">All users</SelectItem>
-                <SelectItem value="officers">Officers</SelectItem>
-                <SelectItem value="analysts">Analysts</SelectItem>
-              </SelectContent>
-            </Select>
+            <p className="text-sm font-medium text-gray-500 mb-2">Date Range</p>
+            <DateRangePicker />
           </div>
           
-          <div className="flex flex-col md:flex-row gap-3 w-full md:w-auto">
-            <DateRangePicker />
-            <Button className="bg-gray-900 hover:bg-gray-700">
-              <Download className="mr-2 h-4 w-4" />
-              Download
-            </Button>
-          </div>
+          <Button className="bg-gray-900 hover:bg-gray-700">
+            <Download className="mr-2 h-4 w-4" />
+            Download
+          </Button>
         </div>
 
         <div className="space-y-8">
